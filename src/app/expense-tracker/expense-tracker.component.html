@@ -1,0 +1,70 @@
+<div class="summary">
+      <div><span>Total Income:</span> <span>{{ totalIncome() }}</span></div>
+      <div><span>Total Expenses:</span> <span>{{ totalExpense() }}</span></div>
+      <div><span>Net Balance:</span> <span>{{ NetBalance() }}</span></div>
+  </div>
+<section id="expense-tracker">
+  <div class="expense-details">
+    
+    <br />
+    <div class="inputs">
+      <div class="input-group">
+        <label for="item">Item</label>
+        <input type="text" name="item" id="item" [(ngModel)]="item" />
+      </div>
+
+      <div class="input-group">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" id="amount" [(ngModel)]="amount" />
+      </div>
+
+      <div class="input-group">
+        <label for="typeSelect">Income/Expense</label>
+        <select name="expense" id="typeSelect" [(ngModel)]="expenseType">
+          <option value="Income" selected="true">Income</option>
+          <option value="Expense">Expense</option>
+        </select>
+      </div>
+    </div>
+     <div class="btn">
+      <button name="add" (click)="Add()">Add Expense</button>
+    </div>
+    <div class="table-data">
+      <h2>Ledger</h2>
+      <table class="expense-table">
+        <thead>
+          <tr>
+            <th>Income</th>
+            <th>Expenses</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (expense of expenses(); track expense) {
+            <tr>
+              <td *ngIf="expense.type === 'Income'">
+                {{ expense.item }}: {{ expense.amt }}
+              </td>
+              <td *ngIf="expense.type === 'Income'"></td>
+              <td *ngIf="expense.type === 'Expense'"></td>
+              <td *ngIf="expense.type === 'Expense'">
+                {{ expense.item }}: {{ expense.amt }}
+              </td>
+            </tr>
+          }
+          <tr>
+            <td>Total Income: {{ totalIncome() }}</td>
+            <td>Total Expenses: {{ totalExpense() }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Net Balance: {{ NetBalance() }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+  <div class="expense-chart">
+    <canvas #acquisitions></canvas>
+  </div>
+</section>

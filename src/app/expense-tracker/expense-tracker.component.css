@@ -1,0 +1,168 @@
+div.inputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 0.5em;
+
+  .input-group:last-child {
+    flex: 1; /* Allow the last input to grow and fill remaining space */
+  }
+}
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  input,select{
+    border: 2px groove #ebebeb;
+  }
+}
+
+div.summary {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 0.5em;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+section#expense-tracker div.table-data {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1em 0.5em;
+  background-color: #1d4870;
+}
+
+section#expense-tracker div.table-data h2{
+    text-align: center;
+    color: #f0f0f0;
+    margin: 20px 0;
+}
+
+section#expense-tracker table.expense-table {
+    background-color: #f0f0f0;
+  border-collapse: collapse;
+
+}
+
+section#expense-tracker table.expense-table th,
+section#expense-tracker table.expense-table td {
+  border: 1px solid #aaaaaa;
+  padding: 8px;
+          color:#333;
+}
+
+section#expense-tracker table.expense-table tbody tr:nth-child(even) {
+  background-color: #4ea9f3;
+}
+
+section#expense-tracker table.expense-table tbody tr:last-child {
+  background-color: transparent;
+  td:first-child {
+    border: none;
+    background: none !important;
+  }
+}
+
+section#expense-tracker {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+section#expense-tracker div.expense-details {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+section#expense-tracker div.expense-chart {
+  /* flex: 0 0 auto; prevent canvas from growing */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  canvas {
+    max-width: clamp(200px, 40vw, 400px); /* smaller width */
+    max-height: clamp(200px, 40vh, 400px); /* smaller height */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section#expense-tracker {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  
+
+  section#expense-tracker table.expense-table {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width:480px) {
+  div.summary{
+    font-size: .9em;
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      span{
+        text-align: left;
+        width: 100%;
+      }
+      span:first-child{
+        font-size: 0.85em;
+        font-weight: bold;
+      }
+    }
+  }
+  div.inputs {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5em;
+    gap:0;
+    .input-group {
+      font-size: 0.85em;
+      label,input,select{
+        width: 100%;
+      }
+    }
+  }
+
+  section#expense-tracker table.expense-table {
+    font-size: 0.85em;
+  }
+
+  .btn button{
+    font-size: 0.85em;
+  }
+
+  section#expense-tracker div.expense-chart {
+  /* flex: 0 0 auto; prevent canvas from growing */
+
+  canvas {
+    max-width:80vw; /* smaller width */
+    max-height: 80vh; /* smaller height */
+  }
+}
+}
