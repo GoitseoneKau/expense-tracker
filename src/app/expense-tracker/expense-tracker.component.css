@@ -1,27 +1,70 @@
-div.inputs {
+.expense-details {
+  height: 100%;
+  padding: 20px;
+  color: #f0f0f0;
+
+}
+
+
+.inputs {
   display: flex;
   justify-content: center;
   gap: 10px;
   padding: 0 0.5em;
 
   .input-group:last-child {
-    flex: 1; /* Allow the last input to grow and fill remaining space */
+    flex: 1;
+    /* Allow the last input to grow and fill remaining space */
   }
 }
+
 .input-group {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  input,select{
+
+  input,
+  select {
     border: 2px groove #ebebeb;
   }
 }
 
 div.summary {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  gap: 20px;
-  padding: 0 0.5em;
+  gap: 1em;
+  padding: 1em 0.5em;
+  width: 80%;
+
+  h3 {
+    text-align: center;
+    width: 100%;
+  }
+
+  .stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5em;
+      width: 100%;
+       font-size: 1.2em;
+      span {
+        text-align: center;
+        width: max-content;
+      }
+
+      span:first-child {
+        font-size: 0.85em;
+        font-weight: bold;
+      }
+    }
+  }
 }
 
 .btn {
@@ -39,70 +82,106 @@ div.summary {
     cursor: pointer;
   }
 }
-section#expense-tracker div.table-data {
+
+
+/* expense tracker */
+section#expense-tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  background-color: #1d4870;
+  border-radius: 8px;
+
+
+  .expenses{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+      border-top: 5px solid #ececec;
+  }
+}
+
+
+/* expense-tracker - expense chart */
+section#expense-tracker div.expense-chart {
+  /* flex: 0 0 auto; prevent canvas from growing */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
+
+  canvas {
+    max-width: clamp(200px, 40vw, 600px);
+    /* smaller width */
+    max-height: clamp(200px, 60vh, 700px);
+    /* smaller height */
+  }
+}
+
+/*expense-tracker - expense details */
+/*  */
+section#expense-tracker div.expense-details {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+/* table data */
+section#expense-tracker div.expense-details div.table-data {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 1em 0.5em;
-  background-color: #1d4870;
+  background-color: #265f94;
 }
 
-section#expense-tracker div.table-data h2{
-    text-align: center;
-    color: #f0f0f0;
-    margin: 20px 0;
+/* header */
+section#expense-tracker div.expense-details div.table-data h2 {
+  text-align: center;
+  color: #f0f0f0;
+  margin: 20px 0;
 }
 
-section#expense-tracker table.expense-table {
-    background-color: #f0f0f0;
+/* table */
+section#expense-tracker div.expense-details div.table-data table.expense-table {
+  background-color: #f0f0f0;
   border-collapse: collapse;
 
 }
 
-section#expense-tracker table.expense-table th,
-section#expense-tracker table.expense-table td {
+/* table cells */
+section#expense-tracker div.expense-details div.table-data table.expense-table th,
+section#expense-tracker div.expense-details div.table-data table.expense-table td {
   border: 1px solid #aaaaaa;
   padding: 8px;
-          color:#333;
+  color: #333;
 }
 
-section#expense-tracker table.expense-table tbody tr:nth-child(even) {
+/* table rows */
+section#expense-tracker div.expense-details div.table-data table.expense-table tbody tr:nth-child(even) {
   background-color: #4ea9f3;
 }
 
-section#expense-tracker table.expense-table tbody tr:last-child {
+section#expense-tracker div.expense-details div.table-data table.expense-table tbody tr:last-child {
   background-color: transparent;
+
   td:first-child {
     border: none;
     background: none !important;
   }
 }
 
-section#expense-tracker {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
 
-section#expense-tracker div.expense-details {
-  width: 100%;
-  font-size: 1.2em;
-}
 
-section#expense-tracker div.expense-chart {
-  /* flex: 0 0 auto; prevent canvas from growing */
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  canvas {
-    max-width: clamp(200px, 40vw, 400px); /* smaller width */
-    max-height: clamp(200px, 40vh, 400px); /* smaller height */
-  }
-}
 
 @media screen and (max-width: 768px) {
   section#expense-tracker {
@@ -110,7 +189,31 @@ section#expense-tracker div.expense-chart {
     align-items: stretch;
   }
 
-  
+  section#expense-tracker div.expense-chart {
+    width: 100%;
+    order: 1;
+    /* Move chart below details */
+  }
+
+  section#expense-tracker div.summary {
+    width: 100%;
+    order: 2;
+    /* Move chart below details */
+  }
+
+  section#expense-tracker div.expense-chart {
+
+
+    canvas {
+
+      max-width: 100%;
+      /* smaller width */
+      max-height: clamp(200px, 40vh, 700px);
+      /* smaller height */
+    }
+  }
+
+
 
   section#expense-tracker table.expense-table {
     width: 100%;
@@ -119,31 +222,46 @@ section#expense-tracker div.expense-chart {
 
 
 @media screen and (max-width:480px) {
-  div.summary{
+  div.summary {
     font-size: .9em;
-    div{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
 
-      span{
-        text-align: left;
+    .stats {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
         width: 100%;
-      }
-      span:first-child{
-        font-size: 0.85em;
-        font-weight: bold;
+
+        span {
+          text-align: center;
+          width: 100%;
+        }
+
+        span:first-child {
+          font-size: 0.85em;
+          font-weight: bold;
+        }
       }
     }
   }
+
   div.inputs {
     flex-direction: column;
     align-items: stretch;
     padding: 0.5em;
-    gap:0;
+    gap: 0;
+
     .input-group {
       font-size: 0.85em;
-      label,input,select{
+
+      label,
+      input,
+      select {
         width: 100%;
       }
     }
@@ -153,16 +271,18 @@ section#expense-tracker div.expense-chart {
     font-size: 0.85em;
   }
 
-  .btn button{
+  .btn button {
     font-size: 0.85em;
   }
 
   section#expense-tracker div.expense-chart {
-  /* flex: 0 0 auto; prevent canvas from growing */
+    /* flex: 0 0 auto; prevent canvas from growing */
 
-  canvas {
-    max-width:80vw; /* smaller width */
-    max-height: 80vh; /* smaller height */
+    canvas {
+      max-width: 80vw;
+      /* smaller width */
+      max-height: 50vh;
+      /* smaller height */
+    }
   }
-}
 }
