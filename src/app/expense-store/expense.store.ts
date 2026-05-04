@@ -12,6 +12,8 @@ const initialState: ExpenseSearchState = {
   expenses: [
     { item: 'Salary', amt: 10000, type: 'Income',bgColor: 'hsl(197, 70%, 50%)' },
     { item: 'Bank Charge', amt: 200, type: 'Expense',bgColor: 'hsl(0, 70%, 50%)' },
+    { item: 'Gift-Sarah', amt: 850, type: 'Income',bgColor: 'hsl(98, 70%, 50%)' },
+    { item: 'Monthly Bread Charge', amt: 350, type: 'Expense',bgColor: 'hsl(44, 70%, 50%)' },
   ],
     totalIncome: 0,
     totalExpense: 0,

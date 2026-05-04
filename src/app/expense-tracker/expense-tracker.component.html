@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="btn">
-        <button name="add" (click)="Add( expenseStore.expenses())">Add Expense</button>
+        <button name="add" (click)="Add( expenseStore.expenses())">Add Expense/Income</button>
       </div>
       <div class="table-data">
         <h2>Ledger</h2>
@@ -54,7 +54,7 @@
               <td *ngIf="expense.type === 'Income'"></td>
               <td *ngIf="expense.type === 'Expense'"></td>
               <td *ngIf="expense.type === 'Expense'">
-                {{ expense.item }}: {{ expense.amt }}
+                {{ expense.item }}: -{{ expense.amt }}
               </td>
             </tr>
             }
